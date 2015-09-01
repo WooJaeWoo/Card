@@ -1,0 +1,40 @@
+html, body, main { height: 100%; }
+main { position: relative; }
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin: -80px 0 0 -80px;
+    background-color: #ccc;
+    1transform: rotate(-20deg);
+    font-size: 40px;
+}
+
+.cardGrid {
+    box-sizing: border-box;
+}
+.cardGrid p {
+    transform-origin: top left;
+}
+.row:before, .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col {
+    float: left;
+    min-height: 40px;
+    width: 25%;
+    box-sizing: border-box;
+}
+.col.c1 { width: 25%; }
+.col.c2 { width: 50%; }
+.col.c3 { width: 75%; }
+.col.c4 { width: 100%; }
+.col.r1 { min-height: 40px;}
+.col.r2 { min-height: 80px;}
+.col.r3 { min-height: 120px;}
+.col.r4 { min-height: 160px;}

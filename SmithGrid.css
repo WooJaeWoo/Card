@@ -1,0 +1,121 @@
+/* #########################
+ * ##      SMITH GRID     ##
+ * ######################### */
+/* author: JW.Smith */
+/* date: 2015.8.14 */
+
+/*
+ * Container
+ * 전체 grid를 감싸는 Container
+ */
+
+.smithGrid {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 200px;
+    min-width: 100px;
+    box-sizing: border-box;
+}
+
+
+/*
+ * Row
+ * row의 clearfix를 위한 설정
+ * http://stackoverflow.com/questions/211383/which-method-of-clearfix-is-best
+ */
+.row:before, .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/*
+ * Column
+ * col-을 포함하는 클래스 설정
+ * http://stackoverflow.com/questions/9836151/what-is-this-css-selector-class-span
+ */
+
+.col {
+    float: left;
+    min-height: 1px; 
+    width: 5%;
+    
+    /*Column padding*/
+    box-sizing: border-box;
+    padding: 12px 10px;
+}
+.row .col.l0 { display: none; }
+.row .col.l1 { width: 5%; }
+.row .col.l2 { width: 10%; }
+.row .col.l3 { width: 15%; }
+.row .col.l4 { width: 20%; }
+.row .col.l5 { width: 25%; }
+.row .col.l6 { width: 30%; }
+.row .col.l7 { width: 35%; }
+.row .col.l8 { width: 40%; }
+.row .col.l9 { width: 45%; }
+.row .col.l10 { width: 50%; }
+.row .col.l11 { width: 55%; }
+.row .col.l12 { width: 60%; }
+.row .col.l13 { width: 65%; }
+.row .col.l14 { width: 70%; }
+.row .col.l15 { width: 75%; }
+.row .col.l16 { width: 80%; }
+.row .col.l17 { width: 85%; }
+.row .col.l18 { width: 90%; }
+.row .col.l19 { width: 95%; }
+.row .col.l20 { width: 100%; }
+
+@media only screen and (max-width : 993px) {
+    .row .col.m0 { display: none; }
+    .row .col.m1 { width: 5%; }
+    .row .col.m2 { width: 10%; }
+    .row .col.m3 { width: 15%; }
+    .row .col.m4 { width: 20%; }
+    .row .col.m5 { width: 25%; }
+    .row .col.m6 { width: 30%; }
+    .row .col.m7 { width: 35%; }
+    .row .col.m8 { width: 40%; }
+    .row .col.m9 { width: 45%; }
+    .row .col.m10 { width: 50%; }
+    .row .col.m11 { width: 55%; }
+    .row .col.m12 { width: 60%; }
+    .row .col.m13 { width: 65%; }
+    .row .col.m14 { width: 70%; }
+    .row .col.m15 { width: 75%; }
+    .row .col.m16 { width: 80%; }
+    .row .col.m17 { width: 85%; }
+    .row .col.m18 { width: 90%; }
+    .row .col.m19 { width: 95%; }
+    .row .col.m20 { width: 100%; }
+}
+
+@media only screen and (max-width : 600px) {
+    .row .col.s0 { display: none; }
+    .row .col.s1 { width: 5%; }
+    .row .col.s2 { width: 10%; }
+    .row .col.s3 { width: 15%; }
+    .row .col.s4 { width: 20%; }
+    .row .col.s5 { width: 25%; }
+    .row .col.s6 { width: 30%; }
+    .row .col.s7 { width: 35%; }
+    .row .col.s8 { width: 40%; }
+    .row .col.s9 { width: 45%; }
+    .row .col.s10 { width: 50%; }
+    .row .col.s11 { width: 55%; }
+    .row .col.s12 { width: 60%; }
+    .row .col.s13 { width: 65%; }
+    .row .col.s14 { width: 70%; }
+    .row .col.s15 { width: 75%; }
+    .row .col.s16 { width: 80%; }
+    .row .col.s17 { width: 85%; }
+    .row .col.s18 { width: 90%; }
+    .row .col.s19 { width: 95%; }
+    .row .col.s20 { width: 100%; }
+}
+
+/* dummy column 설정 */
+.dummy {
+	visibility: hidden;
+}
