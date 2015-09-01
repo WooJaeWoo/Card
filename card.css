@@ -38,3 +38,9 @@ section {
 .col.r2 { min-height: 80px;}
 .col.r3 { min-height: 120px;}
 .col.r4 { min-height: 160px;}
+.col.mt1 { margin-top: -40px; }
+.col.mt2 { margin-top: -80px; }
+.col.mt3 { margin-top: -120px; }
+.col.ml1 { margin-left: -40px; }
+.col.ml2 { margin-left: -80px; }
+.col.ml3 { margin-left: -120px; }
