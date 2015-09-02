@@ -1,5 +1,9 @@
 html, body, main { height: 100%; }
-main { position: relative; }
+main {
+    position: relative;
+    background-color: #33DDAA;
+    transition: background-color 1s;
+}
 section {
     position: absolute;
     top: 50%;
@@ -23,8 +27,6 @@ section {
 }
 .cardGrid .row > div {
     float: left;
-    min-height: 40px;
-    width: 25%;
     box-sizing: border-box;
 }
 .cardGrid p {
