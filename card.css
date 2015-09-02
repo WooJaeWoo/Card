@@ -15,32 +15,32 @@ section {
 .cardGrid {
     box-sizing: border-box;
 }
-.cardGrid p {
-    transform-origin: top left;
-}
+
 .row:before, .row:after {
     content: "";
     display: table;
     clear: both;
 }
-
-.col {
+.cardGrid .row > div {
     float: left;
     min-height: 40px;
     width: 25%;
     box-sizing: border-box;
 }
-.col.c1 { width: 25%; }
-.col.c2 { width: 50%; }
-.col.c3 { width: 75%; }
-.col.c4 { width: 100%; }
-.col.r1 { min-height: 40px;}
-.col.r2 { min-height: 80px;}
-.col.r3 { min-height: 120px;}
-.col.r4 { min-height: 160px;}
-.col.mt1 { margin-top: -40px; }
-.col.mt2 { margin-top: -80px; }
-.col.mt3 { margin-top: -120px; }
-.col.ml1 { margin-left: -40px; }
-.col.ml2 { margin-left: -80px; }
-.col.ml3 { margin-left: -120px; }
+.cardGrid p {
+    transform-origin: top left;
+}
+.cardGrid .c1 { width: 25%; }
+.cardGrid .c2 { width: 50%; }
+.cardGrid .c3 { width: 75%; }
+.cardGrid .c4 { width: 100%; }
+.cardGrid .r1 { min-height: 40px;}
+.cardGrid .r2 { min-height: 80px;}
+.cardGrid .r3 { min-height: 120px;}
+.cardGrid .r4 { min-height: 160px;}
+.cardGrid .mt1 { margin-top: -40px; }
+.cardGrid .mt2 { margin-top: -80px; }
+.cardGrid .mt3 { margin-top: -120px; }
+.cardGrid .ml1 { margin-left: -40px; }
+.cardGrid .ml2 { margin-left: -80px; }
+.cardGrid .ml3 { margin-left: -120px; }
