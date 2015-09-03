@@ -6,9 +6,30 @@ main {
     transition: background-color 1s;
 }
 @keyframes floating {
-    from { margin-top: -84px; }
-    to { margin-top: -76px; }
+    from { margin-top: -86px; }
+    to { margin-top: -74px; }
 }
+@keyframes fromLeft {
+    from { transform: translateX(-1000px); }
+    to { transform: translateX(0px); }
+}
+@keyframes fromRight {
+    from { transform: translateX(1000px); }
+    to { transform: translateX(0px); }
+}
+@keyframes fromTop {
+    from { transform: translateY(-1000px); }
+    to { transform: translateY(0px); }
+}
+@keyframes fromBottom {
+    from { transform: translateY(1000px); }
+    to { transform: translateY(0px); }
+}
+@keyframes rotateClockwise {
+    from { transform: rotate(-12deg); }
+    to { transform: rotate(12deg); }
+}
+
 .cardGrid {
     position: absolute;
     top: 50%;
@@ -20,7 +41,7 @@ main {
 
 .cardGrid.floating {
     animation-name: floating;
-    animation-duration: 0.7s;
+    animation-duration: 0.9s;
     animation-direction: alternate;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in;
@@ -37,6 +58,28 @@ main {
     color: white;
     float: left;
 }
+.cardGrid .row > div.fromleft {
+    animation-name: fromLeft;
+    animation-duration: 0.7s;
+}
+.cardGrid .row > div.fromright {
+    animation-name: fromRight;
+    animation-duration: 0.7s;
+}
+.cardGrid .row > div.fromtop {
+    animation-name: fromTop;
+    animation-duration: 0.7s;
+}
+.cardGrid .row > div.frombottom {
+    animation-name: fromBottom;
+    animation-duration: 0.7s;
+}
+/*.cardGrid .row > div:nth-child(2) {
+    animation-delay: 0.5s;
+}
+.cardGrid .row > div:nth-child(3) {
+    animation-delay: 1s;
+}*/
 .cardGrid p {
     transform-origin: top left;
 }
