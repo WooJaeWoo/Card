@@ -7,6 +7,22 @@ var UTIL = {
 };
 
 //TODO: box 개수가 바뀔 수도 있음...
+//TODO: info를 배열로 넣을 수 있게 object template 만들기
+/* 기본 아이디어
+template = function (data) {
+    return {
+        name: "Alfred",
+        stats: {
+            age: 32,
+            position: {
+                level: 10,
+                title: data.title
+            }
+        }
+    }
+}
+*/
+
 var INFO = {
 	"page1" : {
 		"bgColor" : "#FF9F93",
@@ -19,8 +35,10 @@ var INFO = {
 			},
 			"text" : {
 				"contents" : "안녕",
-				"length" : 0
-			}
+				"length" : 0,
+                "tag" : "nobr"
+			},
+            "from" : "left"
 		},
 		"box2" : {
 			"id" : "box2",
@@ -30,9 +48,11 @@ var INFO = {
 				"margin" : ""
 			},
 			"text" : {
-				"contents" : "굳",
-				"length" : 0
-			}
+				"contents" : "굳굳",
+				"length" : 0,
+                "tag" : "span"
+			},
+            "from" : "top"
 		},
 		"box3" : {
 			"id" : "box3",
@@ -43,8 +63,55 @@ var INFO = {
 			},
 			"text" : {
 				"contents" : "헬로반가워",
-				"length" : 0
-			}
+				"length" : 0,
+                "tag" : "nobr"
+			},
+            "from" : "bottom"
+		}
+	},
+    "page2" : {
+		"bgColor" : "#CD1FA3",
+		"box1" : {
+			"id" : "box1",
+			"grid" : {
+				"col" : "c1",
+				"row" : "r4",
+				"margin" : ""
+			},
+			"text" : {
+				"contents" : "요구사항이",
+				"length" : 0,
+                "tag" : "span"
+			},
+            "from" : "left"
+		},
+		"box2" : {
+			"id" : "box2",
+			"grid" : {
+				"col" : "c2",
+				"row" : "r4",
+				"margin" : ""
+			},
+			"text" : {
+				"contents" : "야호",
+				"length" : 0,
+                "tag" : "nobr"
+			},
+            "from" : "top"
+		},
+		"box3" : {
+			"id" : "box3",
+			"grid" : {
+				"col" : "c1",
+				"row" : "r4",
+				"margin" : ""
+			},
+			"text" : {
+				"contents" : "드럽군요ㅋ",
+				"length" : 0,
+                "tag" : "span"
+			},
+            "from" : "bottom"
 		}
 	}
 };
@@ -71,7 +138,7 @@ var CARD = {
 		//Page Background
 		this.setBgColor(page.bgColor);
 
-		//TODO: CSS 애니메이션 추가
+		//TODO: easein animation
 
 		//each Box setting
 		for (var i = 1; i <= 3; i++) {
@@ -83,7 +150,7 @@ var CARD = {
 	},
 	setBox : function(boxInfo) {
 		var targetBox = $("#" + boxInfo.id);
-		this.setText(targetBox, boxInfo.text);
+		this.setText(targetBox.children(), boxInfo.text);
 		this.setGrid(targetBox, boxInfo.grid);
 		this.scaleText(targetBox.children(), boxInfo);
 	},
@@ -91,15 +158,27 @@ var CARD = {
 		box.addClass(grid.col).addClass(grid.row).addClass(grid.margin);
 	},
 	setText : function(box, text) {
-		box.children().text(text.contents);
+        //attach text on <nobr> or <span> tag
+        var textTag = $(document.createElement(text.tag));
+        textTag.text(text.contents);
+		box.append(textTag);
 		text.length = text.contents.length;
 	},
 	scaleText : function(text, boxInfo) {
-
+        var textLenghth = parseFloat(boxInfo.text.length);
+        var col = parseFloat(boxInfo.grid.col.substring(1,2));
+        var row = parseInt(boxInfo.grid.row.substring(1,2));
+        if (boxInfo.text.tag === "span") {
+            text.css("transform", "scaleY(" + row/textLenghth + ")");
+        } else {
+            text.css("transform", "scale(" + col/textLenghth + "," + row + ")").css("padding", "2px 4px");
+        }
 	},
 	clearPage : function() {
 		for (var i = 1; i <= 3; i++) {
-			$("#box" + i).removeClass();
+            $("#box" + i).removeClass();
+            $("#box" + i + " p").empty();
 		}
+        //TODO: easeout animation
 	}
 };

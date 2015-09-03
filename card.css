@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 html, body, main { height: 100%; }
 main {
     position: relative;
@@ -11,13 +12,10 @@ section {
     width: 160px;
     height: 160px;
     margin: -80px 0 0 -80px;
-    background-color: #ccc;
     1transform: rotate(-20deg);
-    font-size: 40px;
 }
 
 .cardGrid {
-    box-sizing: border-box;
 }
 
 .row:before, .row:after {
@@ -26,16 +24,26 @@ section {
     clear: both;
 }
 .cardGrid .row > div {
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size: 42px;
+    color: white;
     float: left;
-    box-sizing: border-box;
 }
 .cardGrid p {
     transform-origin: top left;
 }
+.cardGrid span {
+    display: inline-block;
+}
+.cardGrid nobr {
+    display: inline-block;
+}
+.cardGrid .c0 { display: none; }
 .cardGrid .c1 { width: 25%; }
 .cardGrid .c2 { width: 50%; }
 .cardGrid .c3 { width: 75%; }
 .cardGrid .c4 { width: 100%; }
+.cardGrid .r0 { display: none; }
 .cardGrid .r1 { min-height: 40px;}
 .cardGrid .r2 { min-height: 80px;}
 .cardGrid .r3 { min-height: 120px;}
