@@ -5,17 +5,25 @@ main {
     background-color: #33DDAA;
     transition: background-color 1s;
 }
-section {
+@keyframes floating {
+    from { margin-top: -84px; }
+    to { margin-top: -76px; }
+}
+.cardGrid {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 160px;
     height: 160px;
     margin: -80px 0 0 -80px;
-    1transform: rotate(-20deg);
 }
 
-.cardGrid {
+.cardGrid.floating {
+    animation-name: floating;
+    animation-duration: 0.7s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
 }
 
 .row:before, .row:after {

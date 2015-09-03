@@ -22,10 +22,31 @@ template = function (data) {
     }
 }
 */
+//boxTemplate([id, grid.col, grid.row, grid.margin, text.content, text.length, text.tag, from]);
+boxTemplate(["box1", "c3", "r3", "", "안녕", 0, "nobr", "left"]);
+boxTemplate(["box2", "c3", "r3", "", "안녕", 0, "nobr", "left"]);
+boxTemplate(["box3", "c3", "r3", "", "안녕", 0, "nobr", "left"]);
 
+var boxTemplate = function(boxData) {
+    return {
+        "id" : boxData[0],
+        "grid" : {
+            "col" : boxData[1],
+            "row" : boxData[2],
+            "margin" : boxData[3]
+        },
+        "text" : {
+            "contents" : boxData[4],
+            "length" : boxData[5],
+            "tag" : boxData[6]
+        },
+        "from" : boxData[7]
+    }
+}
 var INFO = {
 	"page1" : {
 		"bgColor" : "#FF9F93",
+        "angle" : "18deg",
 		"box1" : {
 			"id" : "box1",
 			"grid" : {
@@ -71,6 +92,7 @@ var INFO = {
 	},
     "page2" : {
 		"bgColor" : "#CD1FA3",
+        "angle" : "-12deg",
 		"box1" : {
 			"id" : "box1",
 			"grid" : {
@@ -79,7 +101,7 @@ var INFO = {
 				"margin" : ""
 			},
 			"text" : {
-				"contents" : "요구사항이",
+				"contents" : "내이름은",
 				"length" : 0,
                 "tag" : "span"
 			},
@@ -93,7 +115,7 @@ var INFO = {
 				"margin" : ""
 			},
 			"text" : {
-				"contents" : "야호",
+				"contents" : "우재우",
 				"length" : 0,
                 "tag" : "nobr"
 			},
@@ -107,7 +129,7 @@ var INFO = {
 				"margin" : ""
 			},
 			"text" : {
-				"contents" : "드럽군요ㅋ",
+				"contents" : "입니다",
 				"length" : 0,
                 "tag" : "span"
 			},
@@ -137,9 +159,11 @@ var CARD = {
 	setPage : function(page) {
 		//Page Background
 		this.setBgColor(page.bgColor);
-
+        this.setAngle(page.angle);
+        
 		//TODO: easein animation
 
+        
 		//each Box setting
 		for (var i = 1; i <= 3; i++) {
 			this.setBox(page["box" + i]);
@@ -148,6 +172,9 @@ var CARD = {
 	setBgColor : function(bgColor) {
 		$("main").css("background-color", bgColor);
 	},
+    setAngle : function(angle) {
+        $(".cardGrid").css("transform", "rotate(" + angle + ")");
+    },
 	setBox : function(boxInfo) {
 		var targetBox = $("#" + boxInfo.id);
 		this.setText(targetBox.children(), boxInfo.text);
