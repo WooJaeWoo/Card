@@ -1,4 +1,3 @@
-//service
 $(document).ready(function() {
 	CARD.init();
 });
@@ -17,7 +16,7 @@ var UTIL = {
         return isMobile;
     }
 };
-//BOX.boxTemplate([id, grid.col, grid.row, grid.margin, text.content, text.length, text.tag, from]);
+
 
 var CARD = {
 	init : function() {
@@ -116,6 +115,7 @@ var BOX = {
     setBox : function(boxInfo) {
 		var targetBox = $("#" + boxInfo.id);
         this.setDirectionFrom(targetBox, boxInfo.from);
+        this.setTextDirection();
 		this.setText(targetBox.children(), boxInfo.text);
 		this.setGrid(targetBox, boxInfo.grid);
 		this.scaleText(targetBox.children(), boxInfo);
@@ -156,28 +156,35 @@ var BOX = {
             },
             "text" : {
                 "contents" : boxData[4],
-                "length" : boxData[5],
-                "tag" : boxData[6]
+                "length" : 0,
+                "tag" : boxData[5]
             },
-            "from" : boxData[7]
+            "from" : boxData[6]
         }
     }
 }
 
+/*
+var template = $('#template').html();
+Mustache.parse(template);
+var rendered = Mustache.render(template, {title: todo});
+$("#todo-list").append(rendered);
+*/
+//BOX.boxTemplate([id, grid.col, grid.row, grid.margin, text.content, text.tag, from]);
 var CONTENTS = {
     "page1" : {
-		"box1" : BOX.boxTemplate(["box1", "c3", "r3", "", "안녕", 0, "nobr", "left"]),
-		"box2" : BOX.boxTemplate(["box2", "c1", "r3", "", "반가워", 0, "span", "top"]),
-		"box3" : BOX.boxTemplate(["box3", "c4", "r1", "", "헬로월드", 0, "nobr", "bottom"])
+		"box1" : BOX.boxTemplate(["box1", "c3", "r3", "", "안녕", "nobr", "left"]),
+		"box2" : BOX.boxTemplate(["box2", "c1", "r3", "", "반가워", "span", "top"]),
+		"box3" : BOX.boxTemplate(["box3", "c4", "r1", "", "헬로월드", "nobr", "bottom"])
 	},
     "page2" : {
-        "box1" : BOX.boxTemplate(["box1", "c1", "r4", "", "시간차를", 0, "span", "left"]),
-		"box2" : BOX.boxTemplate(["box2", "c3", "r1", "", "어떻게", 0, "nobr", "top"]),
-		"box3" : BOX.boxTemplate(["box3", "c3", "r3", "", "둘것인가", 0, "nobr", "right"])
+        "box1" : BOX.boxTemplate(["box1", "c1", "r4", "", "시간차를", "span", "left"]),
+		"box2" : BOX.boxTemplate(["box2", "c3", "r1", "", "어떻게", "nobr", "top"]),
+		"box3" : BOX.boxTemplate(["box3", "c3", "r3", "", "둘것인가", "nobr", "right"])
 	},
     "page3" : {
-        "box1" : BOX.boxTemplate(["box1", "c4", "r1", "", "자바스크립트", 0, "nobr", "right"]),
-		"box2" : BOX.boxTemplate(["box2", "c2", "r3", "", "엄청", 0, "nobr", "left"]),
-		"box3" : BOX.boxTemplate(["box3", "c2", "r3", "", "재밌다", 0, "nobr", "bottom"])
+        "box1" : BOX.boxTemplate(["box1", "c4", "r1", "", "자바스크립트", "nobr", "right"]),
+		"box2" : BOX.boxTemplate(["box2", "c2", "r3", "", "엄청", "nobr", "left"]),
+		"box3" : BOX.boxTemplate(["box3", "c2", "r3", "", "재밌다", "nobr", "bottom"])
 	}
 };
