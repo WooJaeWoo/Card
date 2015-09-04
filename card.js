@@ -175,6 +175,7 @@ Mustache.parse(template);
 var rendered = Mustache.render(template, {title: todo});
 $("#todo-list").append(rendered);
 */
+
 //BOX.boxTemplate([id, grid.col, grid.row, grid.margin, text.content, from]);
 var CONTENTS = {
     "page1" : {
