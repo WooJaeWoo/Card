@@ -1,10 +1,40 @@
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 html, body, main { height: 100%; }
+body {
+    font-family: 'Jeju Gothic', sans-serif;
+}
 main {
     position: relative;
     background-color: #33DDAA;
-    transition: background-color 1s;
+    transition: background-color 1.5s;
 }
+h1,h2,h4 { display: none; }
+h3 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 85px;
+    color: #555;
+}
+nav {
+    position: absolute;
+    top: 35%;
+    background-color: #ddd;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    z-index: 999;
+    transition: opacity 0.7s;
+}
+nav #retryButton {
+    width: 100px;
+    margin-top: 28px;
+    height: 33px;
+    display: none;
+    background-color: #ccc;
+}
+
+nav.blur { opacity: 0; }
+
 @keyframes floating {
     from { margin-top: -86px; }
     to { margin-top: -74px; }
@@ -53,7 +83,6 @@ main {
     clear: both;
 }
 .cardGrid .row > div {
-    font-family: 'Jeju Gothic', sans-serif;
     font-size: 42px;
     color: white;
     float: left;
