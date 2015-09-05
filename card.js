@@ -26,7 +26,7 @@ var CARD = {
 		$("body").on("click", function() {
 			if (PAGE.PAGE_COUNT === 0) {
                 $("nav").addClass("blur");
-                $("nav").one("trasitionend", function() {
+                $("nav").one("transitionend", function() {
                     $("nav").css("display", "none");
                 });
             } else {
@@ -47,8 +47,10 @@ var CARD = {
 		}.bind(this));
 	},
     endEvent : function() {
+        
         $("body").off();
         $("nav").css("display", "block");
+        $("nav").css("opacity");
         $("nav").removeClass("blur");
         $("h3").text("END");
 		$("#retryButton").css("display", "inline").one("click", function() {
@@ -64,13 +66,14 @@ var PAGE = {
     PAGE_COUNT : 0,
     PAGE_COLORS : ["#FF9F93", "#EF9A9A", "#CDAFA3", "#E1BEE7", "#9FA8DA", "#90CAF9", "#DCE775", "#FFCC80", "#FFCA28", "#FFAB91"],
     init : function() {
+        this.PAGE_COUNT = 0;
+        
         var startText = "";
         if (UTIL.isMobile()) {
             startText = "TOUCH TO START";
         } else {
             startText = "CLICK TO START";
         }
-        this.PAGE_COUNT = 0;
         $("h3").text(startText);
         
         var nav = $("nav");
@@ -82,45 +85,51 @@ var PAGE = {
         return Object.keys(CONTENTS).length;
     },
     clearPage : function() {
-		for (var i = 1; i <= BOX.getBoxCount(this.PAGE_COUNT); i++) {
-            $("#box" + i).removeClass();
-            $("#box" + i + " p").empty();
-            $("#box" + i).css("animation-name");
-		}
+        $(".row").empty();
         //TODO: out animation
 	},
     setPage : function(page) {
 		//Page Background
-		this.setBgColor(page.bgColor);
-        this.setAngle(page.angle);
+		this._setBgColor(page.bgColor);
+        //this.setAngle(page.angle);
         
 		//each Box setting
-		for (var i = 1; i <= BOX.getBoxCount(this.PAGE_COUNT); i++) {
-			BOX.setBox(page["box" + i]);
+		for (var i = 1; i <= BOX.getTotalPage(this.PAGE_COUNT); i++) {
+            BOX.BOX_COUNT = i;
+			BOX.addBox(page["box" + i]);
 		}
+        BOX.BOX_COUNT = 0;
 	},
-    setBgColor : function() {
+    _setBgColor : function() {
         var colorIndex = UTIL.rand(this.PAGE_COLORS.length);
 		$("main").css("background-color", this.PAGE_COLORS[colorIndex]);
 	},
-    setAngle : function(angle) {
+    _setAngle : function(angle) {
         $(".cardGrid").css("transform", "rotate(" + angle + ")");
     }
 }
 
 var BOX = {
-    getBoxCount : function(pageNum) {
+    BOX_COUNT : 0,
+    getTotalPage : function(pageNum) {
         return Object.keys(CONTENTS["page" + pageNum]).length;
     },
-    setBox : function(boxInfo) {
-		var targetBox = $("#" + boxInfo.id);
-        this.setDirectionFrom(targetBox, boxInfo.from);
-        this.setTextDirection(boxInfo);
-		this.setText(targetBox.children(), boxInfo.text);
-		this.setGrid(targetBox, boxInfo.grid);
-		this.scaleText(targetBox.children(), boxInfo);
+    addBox : function(boxInfo) {
+        this._setBoxInfo(boxInfo);
+        
+        $(".row").append(this._boxTemplate(boxInfo));
+        
+		this._scaleText($("#" + boxInfo.id).children(), boxInfo);
 	},
-    setTextDirection : function(boxInfo) {
+    _setBoxInfo : function(boxInfo) {
+        this._setBoxId(boxInfo);
+        this._setTextDirection(boxInfo);
+        this._setTextLength(boxInfo.text);
+    },
+    _setBoxId : function(boxInfo) {
+        boxInfo.id = "box" + this.BOX_COUNT;
+    },
+    _setTextDirection : function(boxInfo) {
         var col = parseInt(boxInfo.grid.col.substring(1,2));
         if (col === 1) {
             boxInfo.text.tag = "span"
@@ -128,69 +137,72 @@ var BOX = {
             boxInfo.text.tag = "nobr"
         }
     },
-    setDirectionFrom : function(box, direction) {
-        box.addClass("from" + direction);
+    _boxTemplate : function(boxInfo) {
+        var template = $("#" + boxInfo.text.tag + "Template").html();
+        Mustache.parse(template);
+        var rendered = Mustache.render(template, {
+            boxId: boxInfo.id,
+            col: boxInfo.grid.col,
+            row: boxInfo.grid.row,
+            margin: boxInfo.grid.margin,
+            from: boxInfo.from,
+            boxText: boxInfo.text.contents
+        });
+        return rendered;   
     },
-	setGrid : function(box, grid) {
-		box.addClass(grid.col).addClass(grid.row).addClass(grid.margin);
+    _setTextLength : function(text) {
+        text.length = text.contents.length;
 	},
-	setText : function(box, text) {
-        //attach text on <nobr> or <span> tag
-        var textTag = $(document.createElement(text.tag));
-        textTag.text(text.contents);
-		box.append(textTag);
-		text.length = text.contents.length;
-	},
-	scaleText : function(text, boxInfo) {
+	_scaleText : function(text, boxInfo) {
         var textLenghth = parseFloat(boxInfo.text.length);
         var col = parseFloat(boxInfo.grid.col.substring(1,2));
         var row = parseInt(boxInfo.grid.row.substring(1,2));
         if (boxInfo.text.tag === "span") {
             text.css("transform", "scaleY(" + row/textLenghth + ")");
         } else {
-            text.css("transform", "scale(" + col/textLenghth + "," + row + ")").css("padding", "2px 3px");
+            text.css("transform", "scale(" + col/textLenghth + "," + row + ")")
+                .css("padding", "2px 3px");
         }
 	},
-    boxTemplate : function(boxData) {
+    boxInfomation : function(boxData) {
         return {
-            "id" : boxData[0],
+            "id" : "",
             "grid" : {
-                "col" : boxData[1],
-                "row" : boxData[2],
-                "margin" : boxData[3]
+                "col" : boxData[0],
+                "row" : boxData[1],
+                "margin" : boxData[2]
             },
             "text" : {
-                "contents" : boxData[4],
+                "contents" : boxData[3],
                 "length" : 0,
                 "tag" : ""
             },
-            "from" : boxData[5]
+            "from" : boxData[4]
         }
     }
 }
 
-/*
-var template = $('#template').html();
-Mustache.parse(template);
-var rendered = Mustache.render(template, {title: todo});
-$("#todo-list").append(rendered);
-*/
-
-//BOX.boxTemplate([id, grid.col, grid.row, grid.margin, text.content, from]);
+//BOX.boxInfo([grid.col, grid.row, grid.margin, text.content, from]);
 var CONTENTS = {
     "page1" : {
-		"box1" : BOX.boxTemplate(["box1", "c3", "r3", "", "안녕", "left"]),
-		"box2" : BOX.boxTemplate(["box2", "c1", "r3", "", "반가워", "top"]),
-		"box3" : BOX.boxTemplate(["box3", "c4", "r1", "", "헬로월드", "bottom"])
+		"box1" : BOX.boxInfomation(["c3", "r3", "", "안녕", "left"]),
+		"box2" : BOX.boxInfomation(["c1", "r3", "", "반가워", "top"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "헬로월드", "bottom"])
 	},
     "page2" : {
-        "box1" : BOX.boxTemplate(["box1", "c1", "r4", "", "시간차를", "left"]),
-		"box2" : BOX.boxTemplate(["box2", "c3", "r1", "", "어떻게", "top"]),
-		"box3" : BOX.boxTemplate(["box3", "c3", "r3", "", "둘것인가", "right"])
+        "box1" : BOX.boxInfomation(["c1", "r4", "", "시간차를", "left"]),
+		"box2" : BOX.boxInfomation(["c3", "r1", "", "어떻게", "top"]),
+		"box3" : BOX.boxInfomation(["c3", "r3", "", "둘것인가", "right"])
 	},
     "page3" : {
-        "box1" : BOX.boxTemplate(["box1", "c4", "r1", "", "자바스크립트", "right"]),
-		"box2" : BOX.boxTemplate(["box2", "c2", "r3", "", "엄청", "left"]),
-		"box3" : BOX.boxTemplate(["box3", "c2", "r3", "", "재밌다", "bottom"])
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "자바스크립트", "right"]),
+		"box2" : BOX.boxInfomation(["c2", "r3", "", "엄청", "left"]),
+		"box3" : BOX.boxInfomation(["c2", "r3", "", "재밌다", "bottom"])
+	},
+    "page4" : {
+        "box1" : BOX.boxInfomation(["c2", "r2", "", "나", "top"]),
+		"box2" : BOX.boxInfomation(["c2", "r2", "", "너", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "좋아해도", "left"]),
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "괜찮아?", "bottom"])
 	}
 };
