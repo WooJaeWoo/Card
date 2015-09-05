@@ -58,8 +58,8 @@ nav.blur { opacity: 0; }
     to { transform: translateY(0px); }
 }
 @keyframes rotateClockwise {
-    from { transform: rotate(-12deg); }
-    to { transform: rotate(12deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .cardGrid {
@@ -77,6 +77,12 @@ nav.blur { opacity: 0; }
     animation-direction: alternate;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in;
+}
+.cardGrid .spinning {
+    animation-name: rotateClockwise;
+    animation-duration: 0.6s;
+    animation-iteration-count: 2;
+    animation-timing-function: linear;
 }
 
 .row:before, .row:after {

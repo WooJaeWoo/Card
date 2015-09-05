@@ -202,7 +202,7 @@ var CONTENTS = {
     "page4" : {
         "box1" : BOX.boxInfomation(["c2", "r2", "", "나", "top"]),
 		"box2" : BOX.boxInfomation(["c2", "r2", "", "너", "right"]),
-		"box3" : BOX.boxInfomation(["c4", "r1", "", "좋아해도", "left"]),
-        "box4" : BOX.boxInfomation(["c4", "r1", "", "괜찮아?", "bottom"])
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "우리", "left"]),
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "초등학생", "bottom"])
 	}
 };
