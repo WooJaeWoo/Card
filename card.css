@@ -80,16 +80,16 @@ nav.blur { opacity: 0; }
     float: left;
     transition: transform 0.8s;
 }
-.cardGrid .row div.fromleft {
+.cardGrid .row div.left {
     transform: translateX(-800px);
 }
-.cardGrid .row div.fromright {
+.cardGrid .row div.right {
     transform: translateX(800px);
 }
-.cardGrid .row div.fromtop {
+.cardGrid .row div.top {
     transform: translateY(-800px);
 }
-.cardGrid .row div.frombottom {
+.cardGrid .row div.bottom {
     transform: translateY(8100px);
 }
 .cardGrid p {

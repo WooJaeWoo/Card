@@ -60,8 +60,6 @@ var CARD = {
     }
 };
 
-//TODO: vertical = "span", horisontal = "nobr"
-
 var PAGE = {
     PAGE_COUNT : 0,
     PAGE_COLORS : ["#FF9F93", "#EF9A9A", "#CDAFA3", "#E1BEE7", "#9FA8DA", "#90CAF9", "#DCE775", "#FFCC80", "#FFCA28", "#FFAB91"],
@@ -85,9 +83,8 @@ var PAGE = {
         return Object.keys(CONTENTS).length;
     },
     clearPage : function() {
+        //BOX.animateOut();
         $(".row").empty();
-        //TODO: out animation
-        BOX.animateOut();
 	},
     setPage : function(page) {
 		//Page Background
@@ -126,24 +123,29 @@ var BOX = {
 
         //delay start 400ms
         setTimeout(function() {
-            box.removeClass("fromleft")
-               .removeClass("fromtop")
-               .removeClass("fromright")
-               .removeClass("frombottom");
+            box.removeClass("left")
+               .removeClass("top")
+               .removeClass("right")
+               .removeClass("bottom");
         }, 400);
     },
-    animateOut : function(box) {
-        
+    animateOut : function() {
+        $("#spinBox").addClass("spinning");
     },
     _setBoxInfo : function(boxInfo) {
         this._setBoxId(boxInfo);
         this._setTextDirection(boxInfo);
         this._setTextLength(boxInfo.text);
+
+    },
+    _setFrom : function(boxInfo) {
+        $("#" + boxInfo.id).data("from", boxInfo.from);
     },
     _setBoxId : function(boxInfo) {
         boxInfo.id = "box" + this.BOX_COUNT;
     },
     _setTextDirection : function(boxInfo) {
+        //vertical = "span" / horisontal = "nobr"
         var col = parseInt(boxInfo.grid.col.substring(1,2));
         if (col === 1) {
             boxInfo.text.tag = "span"
@@ -209,14 +211,9 @@ var CONTENTS = {
 		"box3" : BOX.boxInfomation(["c3", "r3", "", "둘것인가", "right"])
 	},
     "page3" : {
-        "box1" : BOX.boxInfomation(["c4", "r1", "", "자바스크립트", "right"]),
-		"box2" : BOX.boxInfomation(["c2", "r3", "", "엄청", "left"]),
-		"box3" : BOX.boxInfomation(["c2", "r3", "", "재밌다", "bottom"])
-	},
-    "page4" : {
         "box1" : BOX.boxInfomation(["c2", "r2", "", "나", "top"]),
 		"box2" : BOX.boxInfomation(["c2", "r2", "", "너", "right"]),
 		"box3" : BOX.boxInfomation(["c4", "r1", "", "우리", "left"]),
-        "box4" : BOX.boxInfomation(["c4", "r1", "", "초등학생", "bottom"])
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "호오잇!", "bottom"])
 	}
 };

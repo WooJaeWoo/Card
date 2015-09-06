@@ -21,19 +21,19 @@
     <main>
         <section class="cardGrid floating">
             <h4>CONTENTS</h4>
-            <div class=""><!--spinning box-->
+            <div id="spinBox" class=""><!--spinning box-->
                 <div class="row"></div>
             </div>
         </section>
     </main>
     <script src="card.js"></script>
     <script id="nobrTemplate" type="x-tmpl-mustache">
-        <div id="{{boxId}}" class="{{col}} {{row}} {{margin}} from{{from}}">
+        <div id="{{boxId}}" class="{{col}} {{row}} {{margin}} {{from}}">
             <p><nobr>{{boxText}}</nobr></p>
         </div>
     </script>
     <script id="spanTemplate" type="x-tmpl-mustache">
-        <div id="{{boxId}}" class="{{col}} {{row}} {{margin}} from{{from}}">
+        <div id="{{boxId}}" class="{{col}} {{row}} {{margin}} {{from}}">
             <p><span>{{boxText}}</span></p>
         </div>
     </script>
