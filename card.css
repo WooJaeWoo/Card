@@ -41,22 +41,6 @@ nav.blur { opacity: 0; }
     from { margin-top: -88px; }
     to { margin-top: -72px; }
 }
-@keyframes fromLeft {
-    from { transform: translateX(-1000px); }
-    to { transform: translateX(0px); }
-}
-@keyframes fromRight {
-    from { transform: translateX(1000px); }
-    to { transform: translateX(0px); }
-}
-@keyframes fromTop {
-    from { transform: translateY(-1000px); }
-    to { transform: translateY(0px); }
-}
-@keyframes fromBottom {
-    from { transform: translateY(1000px); }
-    to { transform: translateY(0px); }
-}
 @keyframes rotateClockwise {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -90,26 +74,23 @@ nav.blur { opacity: 0; }
     display: table;
     clear: both;
 }
-.cardGrid .row > div {
+.cardGrid .row div {
     font-size: 42px;
     color: white;
     float: left;
+    transition: transform 0.8s;
 }
-.cardGrid .row > div.fromleft {
-    animation-name: fromLeft;
-    animation-duration: 0.7s;
+.cardGrid .row div.fromleft {
+    transform: translateX(-800px);
 }
-.cardGrid .row > div.fromright {
-    animation-name: fromRight;
-    animation-duration: 0.7s;
+.cardGrid .row div.fromright {
+    transform: translateX(800px);
 }
-.cardGrid .row > div.fromtop {
-    animation-name: fromTop;
-    animation-duration: 0.7s;
+.cardGrid .row div.fromtop {
+    transform: translateY(-800px);
 }
-.cardGrid .row > div.frombottom {
-    animation-name: fromBottom;
-    animation-duration: 0.7s;
+.cardGrid .row div.frombottom {
+    transform: translateY(8100px);
 }
 .cardGrid p {
     transform-origin: top left;

@@ -35,7 +35,7 @@ var CARD = {
             
             //END condition
             if (PAGE.PAGE_COUNT >= PAGE.getTotalPage()) {
-                this.endEvent();
+                this._endEvent();
                 return;
 			}
             
@@ -46,7 +46,7 @@ var CARD = {
             
 		}.bind(this));
 	},
-    endEvent : function() {
+    _endEvent : function() {
         
         $("body").off();
         $("nav").css("display", "block");
@@ -87,26 +87,24 @@ var PAGE = {
     clearPage : function() {
         $(".row").empty();
         //TODO: out animation
+        BOX.animateOut();
 	},
     setPage : function(page) {
 		//Page Background
 		this._setBgColor(page.bgColor);
-        //this.setAngle(page.angle);
         
 		//each Box setting
 		for (var i = 1; i <= BOX.getTotalPage(this.PAGE_COUNT); i++) {
             BOX.BOX_COUNT = i;
 			BOX.addBox(page["box" + i]);
+            BOX.animateIn($("#box" + i));
 		}
         BOX.BOX_COUNT = 0;
 	},
     _setBgColor : function() {
         var colorIndex = UTIL.rand(this.PAGE_COLORS.length);
 		$("main").css("background-color", this.PAGE_COLORS[colorIndex]);
-	},
-    _setAngle : function(angle) {
-        $(".cardGrid").css("transform", "rotate(" + angle + ")");
-    }
+	}
 }
 
 var BOX = {
@@ -121,6 +119,22 @@ var BOX = {
         
 		this._scaleText($("#" + boxInfo.id).children(), boxInfo);
 	},
+    animateIn : function(box) {
+        //add transition-delay by boxId
+        var delay = box.attr("id").substring(3,4) * 0.4;
+        box.css("transition-delay", delay + "s");
+
+        //delay start 400ms
+        setTimeout(function() {
+            box.removeClass("fromleft")
+               .removeClass("fromtop")
+               .removeClass("fromright")
+               .removeClass("frombottom");
+        }, 400);
+    },
+    animateOut : function(box) {
+        
+    },
     _setBoxInfo : function(boxInfo) {
         this._setBoxId(boxInfo);
         this._setTextDirection(boxInfo);
@@ -182,7 +196,7 @@ var BOX = {
     }
 }
 
-//BOX.boxInfo([grid.col, grid.row, grid.margin, text.content, from]);
+//BOX.boxInfomation([grid.col, grid.row, grid.margin, text.content, from]);
 var CONTENTS = {
     "page1" : {
 		"box1" : BOX.boxInfomation(["c3", "r3", "", "안녕", "left"]),
