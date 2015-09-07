@@ -81,26 +81,21 @@ nav.blur { opacity: 0; }
     transition: transform 0.8s;
 }
 .cardGrid .row div.left {
-    transform: translateX(-800px);
+    transform: translateX(-1200px);
 }
 .cardGrid .row div.right {
-    transform: translateX(800px);
+    transform: translateX(1200px);
 }
 .cardGrid .row div.top {
-    transform: translateY(-800px);
+    transform: translateY(-1200px);
 }
 .cardGrid .row div.bottom {
-    transform: translateY(8100px);
+    transform: translateY(1200px);
 }
-.cardGrid p {
-    transform-origin: top left;
-}
-.cardGrid span {
-    display: inline-block;
-}
-.cardGrid nobr {
-    display: inline-block;
-}
+.cardGrid p { transform-origin: top left; }
+.cardGrid span { display: inline-block; }
+.cardGrid nobr { display: inline-block; }
+
 .cardGrid .c0 { display: none; }
 .cardGrid .c1 { width: 25%; }
 .cardGrid .c2 { width: 50%; }

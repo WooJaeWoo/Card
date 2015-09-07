@@ -83,7 +83,10 @@ var PAGE = {
         return Object.keys(CONTENTS).length;
     },
     clearPage : function() {
-        //BOX.animateOut();
+        BOX.animateOut();
+        $("#spinBox").one("animationend", function() {
+            
+        });
         $(".row").empty();
 	},
     setPage : function(page) {
@@ -91,7 +94,8 @@ var PAGE = {
 		this._setBgColor(page.bgColor);
         
 		//each Box setting
-		for (var i = 1; i <= BOX.getTotalPage(this.PAGE_COUNT); i++) {
+        var boxes = BOX.getTotalBox(this.PAGE_COUNT);
+		for (var i = 1; i <= boxes; i++) {
             BOX.BOX_COUNT = i;
 			BOX.addBox(page["box" + i]);
             BOX.animateIn($("#box" + i));
@@ -106,7 +110,8 @@ var PAGE = {
 
 var BOX = {
     BOX_COUNT : 0,
-    getTotalPage : function(pageNum) {
+    getTotalBox : function(pageNum) {
+        console.log(pageNum);
         return Object.keys(CONTENTS["page" + pageNum]).length;
     },
     addBox : function(boxInfo) {
@@ -117,6 +122,8 @@ var BOX = {
 		this._scaleText($("#" + boxInfo.id).children(), boxInfo);
 	},
     animateIn : function(box) {
+        //$("#spinBox").removeClass("spinning");
+        
         //add transition-delay by boxId
         var delay = box.attr("id").substring(3,4) * 0.4;
         box.css("transition-delay", delay + "s");
@@ -128,18 +135,23 @@ var BOX = {
                .removeClass("right")
                .removeClass("bottom");
         }, 400);
+        
     },
     animateOut : function() {
-        $("#spinBox").addClass("spinning");
+        //spin
+        //$("#spinBox").addClass("spinning");
+        
+        //translate
+        var boxes = this.getTotalBox(PAGE.PAGE_COUNT);
+        for (var i = 1; i <= boxes; i++) {
+            var from = $("#box" + i).data("from");
+            $("#box" + i).addClass(from);
+        }
     },
     _setBoxInfo : function(boxInfo) {
         this._setBoxId(boxInfo);
         this._setTextDirection(boxInfo);
         this._setTextLength(boxInfo.text);
-
-    },
-    _setFrom : function(boxInfo) {
-        $("#" + boxInfo.id).data("from", boxInfo.from);
     },
     _setBoxId : function(boxInfo) {
         boxInfo.id = "box" + this.BOX_COUNT;
