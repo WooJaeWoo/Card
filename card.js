@@ -23,8 +23,8 @@ var CARD = {
 		console.log("START");
         PAGE.init();
 
-		$("body").on("click", function() {
-			if (PAGE.PAGE_COUNT === 0) {
+		$("body").on("touchend", function() {
+			if (PAGE.COUNT === 0) {
                 $("nav").addClass("blur");
                 $("nav").one("transitionend", function() {
                     $("nav").css("display", "none");
@@ -34,15 +34,15 @@ var CARD = {
             }
             
             //END condition
-            if (PAGE.PAGE_COUNT >= PAGE.getTotalPage()) {
+            if (PAGE.COUNT >= PAGE.getTotalPage()) {
                 this._endEvent();
                 return;
 			}
             
-            PAGE.PAGE_COUNT++;
-            console.log("PAGE: " + PAGE.PAGE_COUNT);
+            PAGE.COUNT++;
+            console.log("PAGE: " + PAGE.COUNT);
             
-            PAGE.setPage(CONTENTS["page" + PAGE.PAGE_COUNT]);
+            PAGE.setPage(CONTENTS["page" + PAGE.COUNT]);
             
 		}.bind(this));
 	},
@@ -61,10 +61,10 @@ var CARD = {
 };
 
 var PAGE = {
-    PAGE_COUNT : 0,
+    COUNT : 0,
     PAGE_COLORS : ["#FF9F93", "#EF9A9A", "#CDAFA3", "#E1BEE7", "#9FA8DA", "#90CAF9", "#DCE775", "#FFCC80", "#FFCA28", "#FFAB91"],
     init : function() {
-        this.PAGE_COUNT = 0;
+        this.COUNT = 0;
         
         var startText = "";
         if (UTIL.isMobile()) {
@@ -94,13 +94,13 @@ var PAGE = {
 		this._setBgColor(page.bgColor);
         
 		//each Box setting
-        var boxes = BOX.getTotalBox(this.PAGE_COUNT);
+        var boxes = BOX.getTotalBox(this.COUNT);
 		for (var i = 1; i <= boxes; i++) {
-            BOX.BOX_COUNT = i;
+            BOX.COUNT = i;
 			BOX.addBox(page["box" + i]);
             BOX.animateIn($("#box" + i));
 		}
-        BOX.BOX_COUNT = 0;
+        BOX.COUNT = 0;
 	},
     _setBgColor : function() {
         var colorIndex = UTIL.rand(this.PAGE_COLORS.length);
@@ -109,7 +109,7 @@ var PAGE = {
 }
 
 var BOX = {
-    BOX_COUNT : 0,
+    COUNT : 0,
     getTotalBox : function(pageNum) {
         console.log(pageNum);
         return Object.keys(CONTENTS["page" + pageNum]).length;
@@ -126,7 +126,7 @@ var BOX = {
         
         //add transition-delay by boxId
         var delay = box.attr("id").substring(3,4) * 0.4;
-        box.css("transition-delay", delay + "s");
+        box.css("transitionDelay", delay + "s");
 
         //delay start 400ms
         setTimeout(function() {
@@ -142,7 +142,7 @@ var BOX = {
         //$("#spinBox").addClass("spinning");
         
         //translate
-        var boxes = this.getTotalBox(PAGE.PAGE_COUNT);
+        var boxes = this.getTotalBox(PAGE.COUNT);
         for (var i = 1; i <= boxes; i++) {
             var from = $("#box" + i).data("from");
             $("#box" + i).addClass(from);
@@ -154,7 +154,7 @@ var BOX = {
         this._setTextLength(boxInfo.text);
     },
     _setBoxId : function(boxInfo) {
-        boxInfo.id = "box" + this.BOX_COUNT;
+        boxInfo.id = "box" + this.COUNT;
     },
     _setTextDirection : function(boxInfo) {
         //vertical = "span" / horisontal = "nobr"

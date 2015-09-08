@@ -6,6 +6,7 @@ body {
 main {
     position: relative;
     background-color: #33DDAA;
+    -webkit-transition: background-color 1.5s;
     transition: background-color 1.5s;
 }
 h1,h2,h4 { display: none; }
@@ -17,13 +18,14 @@ h3 {
 }
 nav {
     position: absolute;
-    top: 35%;
+    top: 30%;
     background-color: #ddd;
     width: 100%;
     height: 200px;
     text-align: center;
     z-index: 999;
     opacity: 0.9;
+    -webkit-transition: opacity 0.7s;
     transition: opacity 0.7s;
 }
 nav #retryButton {
@@ -37,6 +39,14 @@ nav #retryButton {
 
 nav.blur { opacity: 0; }
 
+@-webkit-keyframes floating {
+    from { margin-top: -88px; }
+    to { margin-top: -72px; }
+}
+@-webkit-keyframes rotateClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 @keyframes floating {
     from { margin-top: -88px; }
     to { margin-top: -72px; }
@@ -45,7 +55,6 @@ nav.blur { opacity: 0; }
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
 .cardGrid {
     position: absolute;
     top: 50%;
@@ -56,6 +65,11 @@ nav.blur { opacity: 0; }
 }
 
 .cardGrid.floating {
+    -webkit-animation-name: floating;
+    -webkit-animation-duration: 0.9s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in;
     animation-name: floating;
     animation-duration: 0.9s;
     animation-direction: alternate;
@@ -63,6 +77,10 @@ nav.blur { opacity: 0; }
     animation-timing-function: ease-in;
 }
 .cardGrid .spinning {
+    -webkit-animation-name: rotateClockwise;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count: 2;
+    -webkit-animation-timing-function: linear;
     animation-name: rotateClockwise;
     animation-duration: 0.6s;
     animation-iteration-count: 2;
@@ -78,21 +96,29 @@ nav.blur { opacity: 0; }
     font-size: 42px;
     color: white;
     float: left;
+    -webkit-transition: -webkit-transform 0.8s;
     transition: transform 0.8s;
 }
 .cardGrid .row div.left {
+    -webkit-transform: translateX(-1200px);
     transform: translateX(-1200px);
 }
 .cardGrid .row div.right {
+    -webkit-transform: translateX(1200px);
     transform: translateX(1200px);
 }
 .cardGrid .row div.top {
+    -webkit-transform: translateY(-1200px);
     transform: translateY(-1200px);
 }
 .cardGrid .row div.bottom {
+    -webkit-transform: translateY(1200px);
     transform: translateY(1200px);
 }
-.cardGrid p { transform-origin: top left; }
+.cardGrid p {
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+}
 .cardGrid span { display: inline-block; }
 .cardGrid nobr { display: inline-block; }
 
