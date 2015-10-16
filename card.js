@@ -62,7 +62,7 @@ var CARD = {
 
 var PAGE = {
     COUNT : 0,
-    PAGE_COLORS : ["#FF9F93", "#EF9A9A", "#CDAFA3", "#E1BEE7", "#9FA8DA", "#90CAF9", "#DCE775", "#FFCC80", "#FFCA28", "#FFAB91"],
+    PAGE_COLORS : ["#EF9A9A", "#F48FB1", "#CE93D8", "#B39DDB", "#64B5F6", "#81C784", "#D4E157", "#AED581", "#FF8A65", "#FFB74D", "#FFAB40"],
     init : function() {
         this.COUNT = 0;
         
@@ -214,18 +214,79 @@ var BOX = {
 var CONTENTS = {
     "page1" : {
 		"box1" : BOX.boxInfomation(["c3", "r3", "", "안녕", "left"]),
-		"box2" : BOX.boxInfomation(["c1", "r3", "", "반가워", "top"]),
-		"box3" : BOX.boxInfomation(["c4", "r1", "", "헬로월드", "bottom"])
+		"box2" : BOX.boxInfomation(["c1", "r3", "", "지민씨", "top"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "반가워요", "bottom"])
 	},
     "page2" : {
-        "box1" : BOX.boxInfomation(["c1", "r4", "", "시간차를", "left"]),
-		"box2" : BOX.boxInfomation(["c3", "r1", "", "어떻게", "top"]),
-		"box3" : BOX.boxInfomation(["c3", "r3", "", "둘것인가", "right"])
+        "box1" : BOX.boxInfomation(["c4", "r2", "", "지민씨", "top"]),
+		"box2" : BOX.boxInfomation(["c4", "r1", "", "보여주려고", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "손좀봤어요", "left"])
 	},
     "page3" : {
-        "box1" : BOX.boxInfomation(["c2", "r2", "", "나", "top"]),
-		"box2" : BOX.boxInfomation(["c2", "r2", "", "너", "right"]),
-		"box3" : BOX.boxInfomation(["c4", "r1", "", "우리", "left"]),
-        "box4" : BOX.boxInfomation(["c4", "r1", "", "호오잇!", "bottom"])
+        "box1" : BOX.boxInfomation(["c2", "r2", "", "오늘", "left"]),
+		"box2" : BOX.boxInfomation(["c2", "r2", "", "하루", "top"]),
+		"box3" : BOX.boxInfomation(["c4", "r2", "", "어땠나요", "right"])
+	},
+    "page4" : {
+        "box1" : BOX.boxInfomation(["c3", "r2", "", "저는", "top"]),
+		"box2" : BOX.boxInfomation(["c1", "r4", "", "여느때와같은", "right"]),
+		"box3" : BOX.boxInfomation(["c3", "r1", "mt4", "주말을", "left"]),
+        "box4" : BOX.boxInfomation(["c3", "r1", "mt3", "보냈어요", "bottom"])
+	},
+    "page5" : {
+        "box1" : BOX.boxInfomation(["c2", "r2", "", "문득", "top"]),
+        "box2" : BOX.boxInfomation(["c2", "r2", "", "문득", "top"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "지민씨", "right"]),
+		"box4" : BOX.boxInfomation(["c4", "r1", "", "생각도났구요", "left"])
+	},
+    "page6" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "한번  ", "left"]),
+		"box2" : BOX.boxInfomation(["c4", "r1", "", "만났지만", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "알수  ", "left"]),
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "있었어요", "right"])
+	},
+    "page7" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "지민씨가", "top"]),
+		"box2" : BOX.boxInfomation(["c2", "r2", "", "참", "left"]),
+		"box3" : BOX.boxInfomation(["c2", "r2", "", "좋은", "right"]),
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "사람이란거", "bottom"])
+	},
+    "page8" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "그래서인지", "top"]),
+		"box2" : BOX.boxInfomation(["c3", "r3", "", "또", "left"]),
+		"box3" : BOX.boxInfomation(["c1", "r3", "", "보고싶고", "right"])
+	},
+    "page9" : {
+        "box1" : BOX.boxInfomation(["c4", "r3", "", "자꾸", "top"]),
+		"box2" : BOX.boxInfomation(["c4", "r1", "", "생각나고", "right"])
+	},
+    "page10" : {
+        "box1" : BOX.boxInfomation(["c3", "r4", "", "더", "left"]),
+		"box2" : BOX.boxInfomation(["c1", "r4", "", "알고싶어요", "top"])
+	},
+    "page11" : {
+        "box1" : BOX.boxInfomation(["c2", "r2", "", "부담", "top"]),
+		"box2" : BOX.boxInfomation(["c2", "r2", "", "갖지는", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r2", "", "말아요", "left"])
+	},
+    "page12" : {
+        "box1" : BOX.boxInfomation(["c2", "r3", "", "그냥", "top"]),
+		"box2" : BOX.boxInfomation(["c2", "r3", "", "편하게", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "대해주세요", "left"])
+	},
+    "page13" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "지민씨도", "left"]),
+		"box2" : BOX.boxInfomation(["c4", "r1", "", "저에대해", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "모르는게", "left"]),
+        "box4" : BOX.boxInfomation(["c4", "r1", "", "많을테니", "right"])
+	},
+    "page14" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "조만간", "left"]),
+		"box2" : BOX.boxInfomation(["c4", "r2", "", "한번", "right"]),
+		"box3" : BOX.boxInfomation(["c4", "r1", "", "만나요", "left"])
+	},
+    "page15" : {
+        "box1" : BOX.boxInfomation(["c4", "r1", "", "안녕  ", "top"]),
+		"box2" : BOX.boxInfomation(["c4", "r3", "", ":)", "bottom"])
 	}
 };
